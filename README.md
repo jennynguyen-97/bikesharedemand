@@ -17,6 +17,9 @@ I combine historical usage patterns with weather data in the train dataset to fo
 I recognize that the dataset may be incomplete due to censored demand. That is, Capital Bikeshare only observed the realized rentals at stations at which bikes were available, not those that were not realized due to the unavailability of bikes.
 
 ## III. Data Preparation
+Since the datasets were extracted from Kaggle, they were already fairly clean, but I made a few changes. 
+<img width="798" alt="Screen Shot 2021-11-05 at 4 25 37 PM" src="https://user-images.githubusercontent.com/93355594/140574175-181f03c8-fbc3-4361-8258-13e664943c91.png">
+First, I converted season, holiday, workingday, and weather to factors rather than numerics. I also extracted time and day from the datetime variable so that I can see demand over time and include time in modeling.
 
 
 
