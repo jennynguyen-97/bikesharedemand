@@ -34,7 +34,7 @@ In the correlation matrix above, I am able to see that _temp_ (the actual temper
 By making these various adjustments, I am able to incorporate factors that are necessary for the next step - modeling, produce the format required for data mining, and avoid major multicollinearity issues.
 
 ### IV. Modeling
-I employ four different supervised machine learning models: Multiple linear regression, Lasso regression, Classification and regression tree (CART), and Random forest. For each model, I implement holdout sampling - spliting the training dataset to 70/30: 70% for modeling and 30% for model evaluation - in order to minimize overfitting. Each individual model provides me with the expected value of our target variable, _count_. Using these outputs, I create a prediction of demand for bikes, which aids in solving the business problem highlighted in the ****Business Understanding**** section above.
+I employ four different supervised machine learning models: Multiple linear regression, Lasso regression, Classification and regression tree (CART), and Random forest. For each model, I implement stratified random sampling - spliting the training dataset to 70/30 (70% for modeling and 30% for model evaluation) while obtaining a sample population that best represents the entire population being studied - in order to minimize overfitting. Each individual model provides me with the expected value of our target variable, _count_. Using these outputs, I create a prediction of demand for bikes, which aids in solving the business problem highlighted in the ****Business Understanding**** section above.
 
 **Multiple Linear Regression**
 
@@ -46,7 +46,7 @@ Lasso regression is very similar to the multiple linear regression implemented a
 
 **Classification and Regression Tree (CART)**
 
-The CART model takes a set of input variables and splits them into separate groups based upon each of the input variables to determine a numerical label for the target variable. This can be interpreted as a prediction of bike demand. I create the CART model to predict the count given all variables in the dataset with the exceptions of casual and registered, which sum to count. To determine the best complexity parameter, I conduct a ten-fold cross validations; this resulted in a complexity parameter of 0.0085. CART model is beneficial when analyzing datasets that contain clearly stratified groups, can interpret non-linear relationships, and is easily interpreted. However, it is more prone to error related to outliers in the independent variable.
+The CART model takes a set of input variables and splits them into separate groups based upon each of the input variables to determine a numerical label for the target variable. This can be interpreted as a prediction of bike demand. I create the CART model to predict the count given all variables in the dataset with the exceptions of casual and registered, which sum to count. To determine the best complexity parameter, I conduct a ten-fold cross validations; this resulted in a complexity parameter of 0.0110. CART model is beneficial when analyzing datasets that contain clearly stratified groups, can interpret non-linear relationships, and is easily interpreted. However, it is more prone to error related to outliers in the independent variable.
 
 **Random Forest**
 
@@ -61,11 +61,11 @@ It is important to evaluate the results of the selected data mining techniques b
 
 I conclude that the most relevant measures of accuracy are <img src="https://render.githubusercontent.com/render/math?math=R^2"> and RMSE since my goals are to minimize prediction errors (the standard deviation of residuals) and be able to predict bike demand as close to the actual demand. Since I have both train and test data, I am able to calculate these measures in both an in-sample and out-of-sample context.
 
-<img src="https://render.githubusercontent.com/render/math?math=R^2"> measures the proportion of variability in the dependent variable that can be explained by the independent variables, and thus sheds light on the fit of the models. In my models, random forest performs the best with an in-sample <img src="https://render.githubusercontent.com/render/math?math=R^2"> of 0.95 and an out-of-sample <img src="https://render.githubusercontent.com/render/math?math=R^2"> of 0.81.
+<img src="https://render.githubusercontent.com/render/math?math=R^2"> measures the proportion of variability in the dependent variable that can be explained by the independent variables, and thus sheds light on the fit of the models. In my models, random forest performs the best with an in-sample <img src="https://render.githubusercontent.com/render/math?math=R^2"> of 0.9466 and an out-of-sample <img src="https://render.githubusercontent.com/render/math?math=R^2"> of 0.8350.
 
 RMSE is a good measure of how spread out the residuals of a predictive model are, meaning the lower the RMSE, the better the predictions made by the model. From the four models above, random forest has the lowest RMSE values (by a good margin) for both in-sample and out-of-sample data. Details of measurement metrics for each model can be seen below:
 
-<p align="center"><img width="649" alt="Screen Shot 2021-11-07 at 11 56 21 PM" src="https://user-images.githubusercontent.com/93355594/140686479-6ea0ce3e-107c-4321-834b-d51a7259b1d0.png">
+<p align="center"><img width="646" alt="Screen Shot 2021-11-11 at 8 05 26 PM" src="https://user-images.githubusercontent.com/93355594/141391859-926e162d-6bdc-4d10-9504-9ac3bb63df8e.png">
 
 In order to project expected improvement, bike-sharing firms can look at ROI (return on investment). Since firms will likely invest in additional bikes in order to cater to the demand levels, they should at least break even in terms of additional revenue. Furthermore, firms should measure utilization of all bikes as well. Additional bikes may be needed for times with higher demand, but during the day there are many time slots where demand is not that high. Utilization would enable the business to know the times at which it has the sparest capacity, and the business could then tailor promotional strategies to influence higher demand during those times. 
 
